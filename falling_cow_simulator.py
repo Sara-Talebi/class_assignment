@@ -2,6 +2,33 @@ import numpy as np
 import matplotlib
 
 ##-----------------------------------------------------------------##
+def plot_energy(time_list, eng_list):
+    plt.plot(time_list, eng_list[:, 2], label="Total Energy")
+    plt.xlabel("Time (s)")
+    plt.ylabel("Energy (J)")
+    plt.title("Energy vs Time")
+    plt.legend()
+    plt.show()
+    
+##-----------------------------------------------------------------##
+def plot_velocity(time_list, vel_list):
+    plt.plot(time_list, vel_list[:, 1], label="y-velocity")
+    plt.xlabel("Time (s)")
+    plt.ylabel("Velocity (m/s)")
+    plt.title("Velocity vs Time")
+    plt.legend()
+    plt.show()
+    
+##-----------------------------------------------------------------##
+def plot_position(time_list, pos_list):
+    plt.plot(time_list, pos_list[:, 1], label="y-position")
+    plt.xlabel("Time (s)")
+    plt.ylabel("Height (m)")
+    plt.title("Height vs Time")
+    plt.legend()
+    plt.show()
+    
+##-----------------------------------------------------------------##
 def eng_calculator(position,velocity,mass,g):
     #KE=0.5*m*v^2
     eng_kinetic = 0.5 * mass * np.sum(velocity**2)
@@ -72,14 +99,10 @@ def test_function():
  		time_list.append(time)
  		
  		time += dt
- 		
- 	
- 	print(pos_list)
- 	print(vel_list)
- 	print(eng_list)
- 	
- 	
-
+ 	##------------
+ 	plot_position(time_list, pos_list)
+ 	plot_velocity(time_list, vel_list)
+ 	plot_energy(time_list, eng_list)
 
 ##-----------------------------------------------------------------##
 test_function()
