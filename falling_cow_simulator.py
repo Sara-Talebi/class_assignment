@@ -22,7 +22,7 @@ def tot_force_vec(velocity,mass,g,wind_res_cons):
     f_wind_y = -wind_res_cons * v_y * v_magnitude
     
     f_tot_x = f_wind_x
-    f_tot_y = f_grav_y + f_wind_y
+    f_tot_y = f_grav + f_wind_y
     f_tot   = np.array([f_tot_x,f_tot_y])
 
     return f_tot
