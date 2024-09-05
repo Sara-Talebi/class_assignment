@@ -7,9 +7,17 @@ def subfunction1():
     return 
 
 ##-----------------------------------------------------------------##
-def subfunction2():
-    print()
-    return 
+def curr_pos_vel_calc(position,velocity,f_tot,mass,dt):
+    #f=ma
+    accel = f_tot / mass
+    
+    #v=v0+adt
+    curr_vel = velocity + (accel * dt)
+    
+    #r=r0+vdt
+    curr_pos = position + (velocity * dt)
+    
+    return curr_vel, curr_pos
     
 ##-----------------------------------------------------------------##
 def tot_force_vec(velocity,mass,g,wind_res_cons):
@@ -40,7 +48,10 @@ def test_function():
  	position = np.array(ini_pos_vec)
  	velocity = np.array(ini_vel_vec)
  	
- 	print(tot_force_vec(velocity,mass,g,wind_res_cons))
+ 	f_tot = tot_force_vec(velocity,mass,g,wind_res_cons)
+ 	curr_vel, curr_pos = curr_pos_vel_calc(position,velocity,f_tot,mass,dt)
+ 	print(curr_vel,curr_pos)
+ 	
 
 
 ##-----------------------------------------------------------------##
