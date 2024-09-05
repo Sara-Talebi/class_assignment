@@ -55,13 +55,29 @@ def test_function():
  	position = np.array(ini_pos_vec)
  	velocity = np.array(ini_vel_vec)
  	
- 	f_tot = tot_force_vec(velocity,mass,g,wind_res_cons)
+ 	pos_list  = []
+ 	vel_list  = []
+ 	time_list = []
+ 	eng_list  = []
  	
- 	curr_vel, curr_pos = curr_pos_vel_calc(position,velocity,f_tot,mass,dt)
+ 	while position[1] > 0.0:
  	
- 	eng_kinetic, eng_poten, eng_tot = eng_calculator(position,velocity,mass,g)
+ 		f_tot = tot_force_vec(velocity,mass,g,wind_res_cons)
+ 		velocity, position = curr_pos_vel_calc(position,velocity,f_tot,mass,dt)
+ 		eng_kinetic, eng_poten, eng_tot = eng_calculator(position,velocity,mass,g)
+ 		
+ 		pos_list.append(position)
+ 		vel_list.append(velocity)
+ 		eng_list.append(eng_tot)
+ 		time_list.append(time)
+ 		
+ 		time += dt
+ 		
  	
- 	print(eng_kinetic, eng_poten, eng_tot)
+ 	print(pos_list)
+ 	print(vel_list)
+ 	print(eng_list)
+ 	
  	
 
 
