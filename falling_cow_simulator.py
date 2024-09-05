@@ -2,9 +2,17 @@ import numpy as np
 import matplotlib
 
 ##-----------------------------------------------------------------##
-def subfunction1():
-    print()
-    return 
+def eng_calculator(position,velocity,mass,g):
+    #KE=0.5*m*v^2
+    eng_kinetic = 0.5 * mass * np.sum(velocity**2)
+    
+    #PE=m*g*h
+    eng_poten = mass * g * position[1]
+    
+    #E=KE+PE
+    eng_tot = eng_kinetic + eng_poten
+    
+    return eng_kinetic, eng_poten, eng_tot
 
 ##-----------------------------------------------------------------##
 def curr_pos_vel_calc(position,velocity,f_tot,mass,dt):
@@ -23,11 +31,10 @@ def curr_pos_vel_calc(position,velocity,f_tot,mass,dt):
 def tot_force_vec(velocity,mass,g,wind_res_cons):
     f_grav = -mass * g
     
-    v_x, v_y    = velocity
-    v_magnitude = np.sqrt(v_x**2 + v_y**2)
+    v_magnitude = np.sqrt(velocity[0]**2 + velocity[1]**2)
     
-    f_wind_x = -wind_res_cons * v_x * v_magnitude
-    f_wind_y = -wind_res_cons * v_y * v_magnitude
+    f_wind_x = -wind_res_cons * velocity[0] * v_magnitude
+    f_wind_y = -wind_res_cons * velocity[1] * v_magnitude
     
     f_tot_x = f_wind_x
     f_tot_y = f_grav + f_wind_y
@@ -49,8 +56,12 @@ def test_function():
  	velocity = np.array(ini_vel_vec)
  	
  	f_tot = tot_force_vec(velocity,mass,g,wind_res_cons)
+ 	
  	curr_vel, curr_pos = curr_pos_vel_calc(position,velocity,f_tot,mass,dt)
- 	print(curr_vel,curr_pos)
+ 	
+ 	eng_kinetic, eng_poten, eng_tot = eng_calculator(position,velocity,mass,g)
+ 	
+ 	print(eng_kinetic, eng_poten, eng_tot)
  	
 
 
