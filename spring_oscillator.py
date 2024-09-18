@@ -1,6 +1,7 @@
 import numpy as np
 import matplotlib.pyplot as plt
 
+
 ##-----------------------------------------------------------------##
 def explicit(m, k, x, v, dt):
     new_x = x + (dt * v)
@@ -14,15 +15,27 @@ def test_function():
     x0 = 1 
     v0 = 0
     dt = 0.1
+    t0 = 0 
     
-    x = [0 for i in range(10)]
-    v = [0 for j in range(10)]
+    x = []
+    v = []
+    t = []
     
-    for i in range(1, 10):
-        x[0] = x0
-        v[0] = v0
-        x[i], v[i] = explicit(m, k, x[i-1], v[i-1], dt)
-        print(x,v)
+    x.append(x0)
+    v.append(v0)
+    t.append(t0)
+    
+    for i in range(0, 10):
+        x[i+1], v[i+1] = explicit(m, k, x[i], v[i], dt)
+        x.append(x[i+1])
+        v.append(v[i+1])
+        new_t = t[i] + dt
+        t.append(new_t)
+       
+        
+    plt.figure()
+    plt.plot(t, x)
+    plt.show()
     
 
 
