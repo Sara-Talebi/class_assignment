@@ -1,3 +1,17 @@
+import numpy as np
+
+def generate_random_matrix_np(rows, cols):
+    """Generates a NumPy array of size rows x cols with random floating-point numbers."""
+    matrix = np.random.rand(rows, cols)
+    return matrix
+
+# Example usage:
+rows = 3
+cols = 4
+A = generate_random_matrix_np(rows, cols)
+print("Matrix A:")
+print(A)
+
 def naive_matrix_multiplication(A, B):
     m = len(A)          # Number of rows in A
     n = len(A[0])       # Number of columns in A (and rows in B)
