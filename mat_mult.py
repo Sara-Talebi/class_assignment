@@ -27,3 +27,23 @@ def naive_matrix_multiplication(A, B):
                 C[i][j] += A[i][k] * B[k][j]
     
     return C
+
+# Generate random matrices with compatible dimensions
+A_rows, A_cols = 2, 3
+B_rows, B_cols = 3, 2  # B_rows must equal A_cols
+
+A = generate_random_matrix_np(A_rows, A_cols)
+B = generate_random_matrix_np(B_rows, B_cols)
+
+# Perform matrix multiplication using NumPy
+C = np.dot(A, B)
+
+# Display the matrices
+print("Matrix A:")
+print(A)
+
+print("\nMatrix B:")
+print(B)
+
+print("\nMatrix C (A x B):")
+print(C)
