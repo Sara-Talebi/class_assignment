@@ -15,8 +15,9 @@ def gaussian_2d(coords, A, x0, y0, sigma_x, sigma_y):
     x, y = coords
     return A * np.exp(-(((x - x0) ** 2) / (2 * sigma_x ** 2) + ((y - y0) ** 2) / (2 * sigma_y ** 2)))
 
-# Prepare the data for curve fitting
+# Prepare the data for curve fitting (flatten arrays)
 coords = np.vstack((xpos, ypos))
+coords = np.reshape(coords, (2, -1))
 
 # Initial guess for the parameters (amplitude, x0, y0, sigma_x, sigma_y)
 initial_guess = [1, np.mean(xpos), np.mean(ypos), 1, 1]
